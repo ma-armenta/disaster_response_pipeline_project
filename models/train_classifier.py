@@ -67,8 +67,7 @@ def build_model():
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer = tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(RandomForestClassifier(n_estimators = 10,
-                                                             min_samples_split = 10)))
+        ('clf', MultiOutputClassifier(RandomForestClassifier()))
     ])
     
     # For some reason adding parameters never worked for me. I tried this on the jupyter notebook
