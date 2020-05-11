@@ -63,10 +63,9 @@ def build_model():
     # as well as on my computer.
     # This issue happens whenever I used MultiOutputClassifier as directed by the project instructions.
     # add parameters for grid search
-    # parameters = {'vect__min_df': [1, 5],
-    #               'tfidf__use_idf':[True, False],
+    # parameters = {'tfidf__use_idf':[True, False],
     #               'clf__estimator__n_estimators':[10, 25], 
-    #               'clf__estimator__min_samples_split':[2, 5, 10]}
+    #               'clf__estimator__min_samples_split':[2, 3]}
     # cv = GridSearchCV(pipeline, param_grid=parameters)
 
     # return cv
