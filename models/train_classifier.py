@@ -21,8 +21,10 @@ from sklearn.svm import SVC
 import pickle
 
 def load_data(database_filepath):
-    # load data
+    # Connect to database
     engine = create_engine('sqlite:///' + database_filepath)
+
+    # Load data from table - Clean_Messages
     df = pd.read_sql("select * from Clean_Messages", engine)
 
     # separate datasets
@@ -35,14 +37,22 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 def tokenize(text):
+    # All text to lowercase
     text = text.lower()
+
     # Remove punctuation characters
     text = re.sub(r"[^a-zA-Z0-9]", " ", text) 
+
+    # Tokenization
     tokens = word_tokenize(text)
+
+    # Lemmatize
     lemmatizer = WordNetLemmatizer()
     
+    # Removing stop words
     tokens = [w for w in tokens if w not in stopwords.words("english")]
 
+    # Removing any whitespaces
     clean_tokens = []
     for tok in tokens:
         clean_tok = lemmatizer.lemmatize(tok).strip()
@@ -52,6 +62,8 @@ def tokenize(text):
 
 
 def build_model():
+
+    # Creating pipeline as indicated by Project Insutrctions
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer = tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -72,12 +84,16 @@ def build_model():
     return pipeline
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    # Get predictions using built model
     y_pred = model.predict(X_test)
+
+    # Evaluation using classification_report and iterating through columns as indicated in project
     for i in range(len(category_names)):
         print(category_names[i])
         print(classification_report(Y_test.iloc[:,i],y_pred[:,i]))
 
 def save_model(model, model_filepath):
+    # Saving model as a pickle file
     pickle.dump(model, open(model_filepath, 'wb'))
 
 

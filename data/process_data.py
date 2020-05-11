@@ -49,7 +49,10 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    # Connect to sqlite database file
     engine = create_engine('sqlite:///' + database_filename)
+
+    # load data from database table - Clean_Messages
     df.to_sql('Clean_Messages', engine, index=False, if_exists='replace')
 
 
