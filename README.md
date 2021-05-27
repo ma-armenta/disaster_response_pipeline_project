@@ -3,7 +3,7 @@
 ### Project Overview
 This project consisted of implementing what was learned from the Sessions of Data Engineering: Data extraction, exploration, cleaning, evaluation
 and utilization.
-Overall the implementation of ETL, NLP and ML pipelines and model trainning to feed data to a portal, and interpret new data comes in through the portal.
+Overall the implementation of ETL, NLP and ML pipelines and model trainning to feed data to a portal, and interpret new data coming in through the portal.
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
